@@ -36,5 +36,27 @@ export class GenerosService extends DadosBaseService {
     return this.http.get(this.URL.concat(`${id}/`));
   }
 
+  excluir(id) {
+    return this.http.delete(this.URL.concat(`${id}/`));
+  }
+
+  cadastrar(nome, foto?) {
+    let formData: FormData = new FormData();
+    formData.append('nome', nome);
+    if (foto) {
+      formData.append('foto', foto, foto.name);
+    }
+    return this.http.post(this.URL, formData);
+  }
+
+  editar(id, nome, foto?) {
+    let formData: FormData = new FormData();
+    formData.append('nome', nome);
+    if (foto) {
+      formData.append('foto', foto, foto.name);
+    }
+    return this.http.patch(this.URL.concat(`${id}/`), formData);
+  }
+
 
 }
